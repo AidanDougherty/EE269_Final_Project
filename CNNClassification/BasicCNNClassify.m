@@ -8,8 +8,9 @@ imds = imageDatastore(dataset_path,"IncludeSubfolders",true,"FileExtensions",".p
 pixelWidth = 64;
 classSize = 1000;
 numClasses = 16;
-numTrainFiles = 0.8*classSize;
-[imdsTrain,imdsValidation] = splitEachLabel(imds,numTrainFiles,'randomize'); %Split Train/Test
+numTrainFiles = 0.2*classSize; %Train on First 10 percent of each class data
+testDataSize = 0.95*numClasses*classSize;
+[imdsTrain,imdsValidation] = splitEachLabel(imds,numTrainFiles); %Split Train/Test
 %%
 %Use Matlab's example for simple CNN
 layers = [
@@ -51,14 +52,7 @@ YPred = classify(net,imdsValidation);
 YValidation = imdsValidation.Labels;
 
 accuracy = sum(YPred == YValidation)/numel(YValidation)
-%%
-%Reference data rate calc for equivalent BPSK Transceiver
-
-% BER = 1 - accuracy; %6e-4
-% Eb_n0 = exp(7.5/10); %with BER of 6e-4, BPSK would have 7.5 dB Eb/No
-% BW = 1e6; %Assume 1 MHz BW
-% SNR = 1; %0dB SNR
-% bit_rate = SNR*BW/Eb_n0
+BER = 1-accuracy;
 
 
 
