@@ -7,7 +7,7 @@ N = 128; %Crop Window size
 comp_ratio = 0.5; %Compression Ratio After Croppping
 method = "bilinear"; %Compression method
 dirpath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\Project_Data\Del_10_Sorted\"; %Folder of Beam Folders
-data_name = "BeamData_Del_10.mat"; %Name of output file
+data_name = "ResizedBeamData_Del_10.mat"; %Name of output file
 end
 
 files = dir(dirpath);
