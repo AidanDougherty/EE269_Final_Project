@@ -25,7 +25,7 @@ for y = 1:NBeams %For each Beam folder find all pngs and put into row of cell ar
     fsrc = dir(fpath); 
     beam_dir_name = strcat("Beam_",num2str(y-1));
     mkdir(writepath, beam_dir_name); %Make Folder for beam class
-    display(strcat("Processing Beam Number ", num2str(y-1)))
+    display(strcat("Processing Beam Number ", num2str(y-1,'%03d')))
     for i = 1:size(fsrc,1) %crop and compress each png in directory
         fname=strcat(dirpath, subFolderNames(y), "\", fsrc(i).name); %Get img name
         Img = imread(fname);
