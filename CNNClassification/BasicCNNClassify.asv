@@ -1,7 +1,7 @@
 %%
 %Script to do Basic CNN Classification on Resized 64x64 Beam images
 %Get Image Dataset
-dataset_path = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\ResizedBeamImg_Del_10";
+dataset_path = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\ResizedBeamImg_Del_1";
 imds = imageDatastore(dataset_path,"IncludeSubfolders",true,"FileExtensions",".png","LabelSource","foldernames");
 
 %%
@@ -52,13 +52,11 @@ YValidation = imdsValidation.Labels;
 
 accuracy = sum(YPred == YValidation)/numel(YValidation)
 %%
-%Reference data rate calc for equivalent BPSK Transceiver
-
-% BER = 1 - accuracy; %6e-4
-% Eb_n0 = exp(7.5/10); %with BER of 6e-4, BPSK would have 7.5 dB Eb/No
-% BW = 1e6; %Assume 1 MHz BW
-% SNR = 1; %0dB SNR
-% bit_rate = SNR*BW/Eb_n0
+BER = 1 - accuracy; %6e-4
+Eb_n0 = exp(7.5/10); %with BER of 6e-4, BPSK would have 7.5 dB Eb/No
+BW = 1e6; %Assume 1 MHz BW
+SNR = 1; %0dB SNR
+bit_rate = SNR*BW/Eb_n0
 
 
 
