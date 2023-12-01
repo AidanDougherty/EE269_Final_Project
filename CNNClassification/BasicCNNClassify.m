@@ -8,7 +8,7 @@ imds = imageDatastore(dataset_path,"IncludeSubfolders",true,"FileExtensions",".p
 pixelWidth = 64;
 classSize = 1000;
 numClasses = 16;
-numTrainFiles = 0.2*classSize; %Train on First 10 percent of each class data
+numTrainFiles = 0.2*classSize; %Train on First 20 percent of each class data
 testDataSize = 0.95*numClasses*classSize;
 [imdsTrain,imdsValidation] = splitEachLabel(imds,numTrainFiles); %Split Train/Test
 %%

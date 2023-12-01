@@ -25,6 +25,7 @@ YVal = imdsValidation.Labels;
 XTrain_cell = readall(imdsTrain);
 XVal_cell = readall(imdsValidation);
 
+%Convert imds to arrays
 XTrain = zeros(N_train,pixelWidth^2);
 XVal = zeros(N_val,pixelWidth^2);
 for i = 1:N_train
@@ -56,7 +57,7 @@ elseif(svm_lda_opt == 2) %LDA   using PCA: 65 Percent acc at Del 10, 80 percent 
     Mdl = fitcdiscr(XTrain, YTrain,'DiscrimType','linear');
     type_str = "LDA";
 elseif(svm_lda_opt == 3) %QDA   using PCA: 50 Percent at Del 1, with only 20 percent training, hard to estimate class covar
-    Mdl = fitcdiscr(XTrain, YTrain,'DiscrimType','diagQuadratic');
+    Mdl = fitcdiscr(XTrain, YTrain,'DiscrimType','diagQuadratic'); %DO NOT USE WITHOUT PCA
     type_str = "QDA";
 end
 
