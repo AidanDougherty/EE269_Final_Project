@@ -5,8 +5,8 @@
 function WavDenoise_Save(dirpath,writepath,den_type)
 arguments %Set Defaults
 dirpath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\ResizedBeamImg_Del_10\"; %Folder of Beam Folders to Read, include last slash
-writepath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\ResizedDenoised\ResizedCpxWavCSDen_Del_10\"; %Folder to write Beam png's
-den_type = 3; %1 = normal wavelet denoise, 2 = cpxdt wavelet denoise, 3 = compressed sensing cpxdt denoise
+writepath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\ResizedDenoised\ResizedCpxWavDen_Del_10\"; %Folder to write Beam png's
+den_type = 2; %1 = normal wavelet denoise, 2 = cpxdt wavelet denoise, 3 = compressed sensing cpxdt denoise
 end
 
 files = dir(dirpath);
@@ -35,12 +35,12 @@ for y = 1:NBeams %For each Beam folder find all pngs
         elseif(den_type ==2) %Complex Wavelet Denoising
             wt = dddtree2('cplxdt', Img, 1, 'FSfarras', 'qshift10');
             imp = sort(abs(wt.cfs{1}(:)),'descend'); %vectorize + sort
-            idx = floor(length(imp)*15/100); %Keep 15 percent of coeffs
-            thresh= imp(idx); %Threshold away lower 85 percent
+            idx = floor(length(imp)*35/100); %Keep 35 percent of coeffs
+            thresh= imp(idx); %Threshold away lower 65 percent
             wt.cfs{1} = wthresh(wt.cfs{1},"s",thresh);
             imden = idddtree2(wt);
         else %den_type == 3
-            imden = cpxddt_sparse_denoise(Img,100); %Compressed sensing denoise
+            imden = cpxddt_sparse_denoise(Img,25); %Compressed sensing denoise
         end
         new_img = cast(wcodemat(imden,255,'mat',1),"uint8"); %Cast to uint8 for png
         imwrite(new_img,strcat(writepath,beam_dir_name,"\",fsrc(i).name))%Write to File in Folder

@@ -1,0 +1,15 @@
+Test Accuracy - 20 epochs, 40/60  split
+Del_10:
+Resized_Del_10: 0.9499
+WavComp_Del_10: 0.9473
+ResizedWavDen_Del_10: 0.9525
+ResizedCpxWavDen_Del_10: 0.9568
+ResizedCpxWavCSDen_Del_10: 0.9550
+
+Del_5:
+Resized_Del_5: 0.9953
+WavComp_Del_5: 0.9993
+
+Del_1:
+Resized_Del_1: 0.9953
+WavComp_Del_1: 0.9945
