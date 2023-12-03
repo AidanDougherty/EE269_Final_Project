@@ -20,7 +20,7 @@ subFolderNames = {beamFolders(3:end).name}; % Start at 3 to skip . and ..
 
 
 NBeams = length(subFolderNames);
-for y = 1:NBeams %For each Beam folder find all pngs and put into row of cell array
+for y = 1:NBeams %For each Beam folder find all pngs 
     fpath = strcat(dirpath,subFolderNames(y),"\*.png");
     fsrc = dir(fpath); 
     beam_dir_name = strcat("Beam_",num2str(y-1));
@@ -31,8 +31,8 @@ for y = 1:NBeams %For each Beam folder find all pngs and put into row of cell ar
         Img = imread(fname);
         Img = Img(end/2-N/2+1:end/2+N/2,end/2-N/2+1:end/2+N/2); %Crop
         [c,s]=wavedec2(Img,2,wavelet);
-        A1 = appcoef2(c,s,wavelet,1);
-        A1img = cast(wcodemat(A1,255,'mat',1),"uint8");
+        A1 = appcoef2(c,s,wavelet,1); %Get Wavelet Approximation Coeffs
+        A1img = cast(wcodemat(A1,255,'mat',1),"uint8"); %Cast to uint8 for png
         imwrite(A1img,strcat(writepath,beam_dir_name,"\",fsrc(i).name))%Write to File in Folder
     end
     
