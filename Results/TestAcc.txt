@@ -13,3 +13,14 @@ WavComp_Del_5: 0.9993
 Del_1:
 Resized_Del_1: 0.9953
 WavComp_Del_1: 0.9945
+
+
+20 Epochs, 20/80 split
+Del_10:
+Resized_Del_10: 0.8898
+
+Del_5:
+Resized_Del_5: 
+
+Del_1:
+Resized_Del_1:
