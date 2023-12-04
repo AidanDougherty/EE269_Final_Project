@@ -18,6 +18,9 @@ WavComp_Del_1: 0.9945
 20 Epochs, 20/80 split
 Del_10:
 Resized_Del_10: 0.8898
+WCoef_Del_10 (bior4.4): 0.8541
+WCoef2_Del_10 (sym4): 0.8467
+WCoef2_Del_10 (sym16): 0.8306
 
 Del_5:
 Resized_Del_5: 

@@ -3,7 +3,7 @@ arguments
     N  = 120; % Crop Window size
     wavelet  = "bior4.4"; % Compression method
     dirpath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\Project_Data\Del_10_Sorted\"; % Folder of Beam Folders to Read
-    writepath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\WCoef_Del_10\"; % Folder to write Beam png's
+    writepath = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\WCoef2_Del_10\"; % Folder to write Beam png's
 end
 
 % Extract subfolder names (Beam classes)
@@ -40,11 +40,11 @@ for y = 1:NBeams
         diagonalDetail = detcoef2('d', c, s, 1);
         
         % Concatenate wavelet coefficients to create multi-channel input
-        wavelet_coeffs = cat(3, approximation, horizontalDetail, verticalDetail); %diagonalDetail);
+        wavelet_coeffs = cat(3, approximation, horizontalDetail, verticalDetail);%diagonalDetail);
         
-        % Normalize coefficients to the range [0, 1]
+        % Normalize coefficients to the range [0, 1] globally
         wavelet_coeffs = (wavelet_coeffs - min(wavelet_coeffs(:))) / (max(wavelet_coeffs(:)) - min(wavelet_coeffs(:)));
-        
+       
         % Write the compressed image to the specified folder
         imwrite(wavelet_coeffs, strcat(writepath, beam_dir_name, "\", fsrc(i).name))
     end
