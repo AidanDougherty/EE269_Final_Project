@@ -5,19 +5,20 @@ clearvars; close all; clc
 
 %% Folder Information
 % ===== WHAT YOU CHANGE ===== %
-experimentFolder = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\Results\20_80_split\"; % folder for experiment (organizes everything in matlab)
+experimentFolder = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\Results\40_60_split\"; % folder for experiment (organizes everything in matlab)
 dataFolder = sprintf('CNN_WCoef2_Del_10'); % this is the big folder all the output data goes in
 cnnFolder = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\WCoef2_Del_10"; %folder of images
 imNum = 1000; % number of images per beam
 totalBeams = 16; % total number of beams being classified
-trainImg = 200; % number of images per beam used for training
-testImg = 800; % number of images used per beam for testing
+trainImg = 400; % number of images per beam used for training
+testImg = 600; % number of images used per beam for testing
 res = 64; % size of images
 xyTrans = 4; % number of pixels translated to combat overfitting
 % =========================== %
 
 % access images
 cd(experimentFolder);
+mkdir(experimentFolder, dataFolder);
 cd(dataFolder);
 
 %% CNN Set Up

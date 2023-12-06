@@ -6,8 +6,8 @@ clearvars; close all; clc
 
 %% Parameters
 % ===== WHAT YOU CHANGE ===== %
-experimentFolder = sprintf('EE_269_Data'); % folder for experiment (organizes everything in matlab)
-dataFolder = sprintf('Del_10_Processed'); % this is the big folder everything goes in
+experimentFolder = sprintf('DataProcessing'); % folder for experiment (organizes everything in matlab)
+dataFolder = sprintf('FFT_Del_10'); % this is the big folder everything goes in
 processedFolder = sprintf('Del_10_LPFr16');
 beamTotal = 16; % number of beams in set
 numImgs = 1000;

@@ -1,3 +1,4 @@
+CNN
 Test Accuracy - 20 epochs, 40/60  split
 Del_10:
 Resized_Del_10: 0.9499
@@ -5,6 +6,9 @@ WavComp_Del_10: 0.9473
 ResizedWavDen_Del_10: 0.9525
 ResizedCpxWavDen_Del_10: 0.9568
 ResizedCpxWavCSDen_Del_10: 0.9550
+WCoef_Del_10 (bior4.4): 0.9172
+WCoef2_Del_10 (sym4): 0.9160
+
 
 Del_5:
 Resized_Del_5: 0.9953
@@ -18,12 +22,58 @@ WavComp_Del_1: 0.9945
 20 Epochs, 20/80 split
 Del_10:
 Resized_Del_10: 0.8898
+WavComp_Del_10: 0.8967
+ResizedWavDen_Del_10: 0.8991
+ResizedCpxWavDen_Del_10: 0.9091
+ResizedCpxWavCSDen_Del_10: 0.9029
 WCoef_Del_10 (bior4.4): 0.8541
 WCoef2_Del_10 (sym4): 0.8467
 WCoef2_Del_10 (sym16): 0.8306
+LPFBeam_Del_10: 0.9001
+LPFBeamFFT_Del_10: 0.5805
+BeamFFT_Del_10: 0.5708
 
 Del_5:
-Resized_Del_5: 
+Resized_Del_5: 0.9971
+WavComp_Del_5: 0.9973
 
 Del_1:
-Resized_Del_1:
+Resized_Del_1: 0.9895
+WavComp_Del_1: 0.9899
+
+SVM+PCA 20/80 split, test accuracy
+Del_10:
+Resized_Del_10: 0.5800
+WavComp_Del_10: 0.5178
+ResizedWavDen_Del_10: 0.5247
+ResizedCpxWavDen_Del_10: 0.5380
+ResizedCpxWavCSDen_Del_10: 0.5330
+LPFBeam_Del_10: 0.5441
+LPFBeamFFT_Del_10: 0.3659
+BeamFFT_Del_10: 0.3659
+
+
+LDA+PCA 20/80 split, test accuracy
+Del_10:
+Resized_Del_10: 0.6459
+WavComp_Del_10: 0.5899
+ResizedWavDen_Del_10: 0.5984
+ResizedCpxWavDen_Del_10: 0.6130
+ResizedCpxWavCSDen_Del_10: 0.6059
+LPFBeam_Del_10: 0.6273
+LPFBeamFFT_Del_10: 0.4047
+BeamFFT_Del_10: 0.4047
+
+
+Key:
+Resized: Cropped to 128x128, Bilinearly resized down to 64x64
+WavComp: Cropped to 128x128, 64x64 Approximation coefficients of bior4.4 wavelet transform
+ResizedWavDen: Sym2 Wavelet Tresholding on Resized beam (down to lowest level)
+ResizedCpxWavDen: Dual Tree Complex Wavelet Thresholding, 1 level on Resized beam
+ResizedCpxWavCSDen: Compressed Sensing K-space reconstruction using Iterative Dual Tree Complex Wavelet Denoising on resized beam
+WCoef: Bior4.4 Wavelet Approximation, Horizontal Detail, Vertical Detail coeffs as 3-channel png color image on resized beam
+WCoef2: Sym4 Wavelet Coefficients as above, but Horizontal and Vertical coeffs are thresholded and amplified (on resized beam)
+LPFBeam: Radius 16 Low Pass Filter applied in K-space, 2D IFFT back to spatial domain (on resized beam)
+LPFBeamFFT: Radius 16 Low Pass Filter applied in K-space, use Fourier coeffs in CNN (on resized beam)
+BeamFFT: Take 2DFFT of beam, use Fourier coeffs in CNN (on resized beam)
+

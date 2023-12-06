@@ -4,11 +4,11 @@
 function [accuracy, Mdl] = BasicSVM_LDA(dataset_path, pixelWidth, train_prop, pca_opt, svm_lda_opt)
 %Get Image Dataset
 arguments
-dataset_path = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\ResizedBeamImg_Del_1";
+dataset_path = "C:\Users\dough\OneDrive\Documents\MATLAB\EE269\EE269_Final_Project\DataProcessing\LPFBeamFFT_Del_10";
 pixelWidth = 64; %width of image in pixels
 train_prop = 0.2; %Proportion of data used as training
 pca_opt = 1; %use PCA and/or LDA (0 = none, 1 = PCA)
-svm_lda_opt = 3; %1 = SVM, 2 = LDA, 3 = Quadratic Discrim
+svm_lda_opt = 2; %1 = SVM, 2 = LDA, 3 = Quadratic Discrim
 end
 imds = imageDatastore(dataset_path,"IncludeSubfolders",true,"FileExtensions",".png","LabelSource","foldernames");
 %Set up Training/Validation Data
@@ -38,6 +38,8 @@ train_mean = mean(XTrain);
 train_sdev = std(XTrain);
 XTrain = (XTrain - train_mean)./train_sdev; %Normalize Train and Test data over train distribution
 XVal = (XVal - train_mean)./train_sdev;
+XTrain(isnan(XTrain))=0; %set NaN to 0 (case where sdev = 0)
+XVal(isnan(XVal))=0;
 
 if(pca_opt==1)
     %do PCA, compress data to 10% of size
